@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1E16535C22BFA8DA00EFCBC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E16535B22BFA8DA00EFCBC9 /* AppDelegate.swift */; };
-		1E16535E22BFA8DA00EFCBC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E16535D22BFA8DA00EFCBC9 /* ViewController.swift */; };
 		1E16536122BFA8DA00EFCBC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E16535F22BFA8DA00EFCBC9 /* Main.storyboard */; };
 		1E16536322BFA8DC00EFCBC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E16536222BFA8DC00EFCBC9 /* Assets.xcassets */; };
 		1E16536622BFA8DC00EFCBC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E16536422BFA8DC00EFCBC9 /* LaunchScreen.storyboard */; };
 		1E16537122BFA8DC00EFCBC9 /* ItsTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E16537022BFA8DC00EFCBC9 /* ItsTimeTests.swift */; };
 		1E16537C22BFA8DC00EFCBC9 /* ItsTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E16537B22BFA8DC00EFCBC9 /* ItsTimeUITests.swift */; };
+		1E16538B22BFA9FC00EFCBC9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E16538A22BFA9FC00EFCBC9 /* MapKit.framework */; };
+		1E16538D22BFAA5800EFCBC9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E16538C22BFAA5800EFCBC9 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,6 @@
 /* Begin PBXFileReference section */
 		1E16535822BFA8DA00EFCBC9 /* ItsTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItsTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E16535B22BFA8DA00EFCBC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E16535D22BFA8DA00EFCBC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E16536022BFA8DA00EFCBC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E16536222BFA8DC00EFCBC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E16536522BFA8DC00EFCBC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +47,8 @@
 		1E16537722BFA8DC00EFCBC9 /* ItsTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ItsTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E16537B22BFA8DC00EFCBC9 /* ItsTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItsTimeUITests.swift; sourceTree = "<group>"; };
 		1E16537D22BFA8DC00EFCBC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E16538A22BFA9FC00EFCBC9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1E16538C22BFAA5800EFCBC9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E16538B22BFA9FC00EFCBC9 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 				1E16536F22BFA8DC00EFCBC9 /* ItsTimeTests */,
 				1E16537A22BFA8DC00EFCBC9 /* ItsTimeUITests */,
 				1E16535922BFA8DA00EFCBC9 /* Products */,
+				1E16538922BFA9FC00EFCBC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,8 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				1E16535B22BFA8DA00EFCBC9 /* AppDelegate.swift */,
-				1E16535D22BFA8DA00EFCBC9 /* ViewController.swift */,
 				1E16535F22BFA8DA00EFCBC9 /* Main.storyboard */,
+				1E16538C22BFAA5800EFCBC9 /* MapViewController.swift */,
 				1E16536222BFA8DC00EFCBC9 /* Assets.xcassets */,
 				1E16536422BFA8DC00EFCBC9 /* LaunchScreen.storyboard */,
 				1E16536722BFA8DC00EFCBC9 /* Info.plist */,
@@ -123,6 +127,14 @@
 				1E16537D22BFA8DC00EFCBC9 /* Info.plist */,
 			);
 			path = ItsTimeUITests;
+			sourceTree = "<group>";
+		};
+		1E16538922BFA9FC00EFCBC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E16538A22BFA9FC00EFCBC9 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +205,14 @@
 				TargetAttributes = {
 					1E16535722BFA8DA00EFCBC9 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					1E16536B22BFA8DC00EFCBC9 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -256,8 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E16535E22BFA8DA00EFCBC9 /* ViewController.swift in Sources */,
 				1E16535C22BFA8DA00EFCBC9 /* AppDelegate.swift in Sources */,
+				1E16538D22BFAA5800EFCBC9 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R85RBRZ4TB;
 				INFOPLIST_FILE = ItsTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,6 +474,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R85RBRZ4TB;
 				INFOPLIST_FILE = ItsTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
