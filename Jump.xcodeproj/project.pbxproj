@@ -224,7 +224,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1E16535322BFA8DA00EFCBC9 /* Build configuration list for PBXProject "ItsTime" */;
+			buildConfigurationList = 1E16535322BFA8DA00EFCBC9 /* Build configuration list for PBXProject "Jump" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -571,7 +571,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1E16535322BFA8DA00EFCBC9 /* Build configuration list for PBXProject "ItsTime" */ = {
+		1E16535322BFA8DA00EFCBC9 /* Build configuration list for PBXProject "Jump" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E16537E22BFA8DC00EFCBC9 /* Debug */,

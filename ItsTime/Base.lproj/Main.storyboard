@@ -97,7 +97,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fp-Fq-777">
-                                        <rect key="frame" x="30" y="92" width="260" height="30"/>
+                                        <rect key="frame" x="15" y="92" width="135" height="30"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Choose Destination">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -115,25 +115,38 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIi-1x-nNl">
+                                        <rect key="frame" x="170" y="92" width="135" height="30"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Stop Tracking">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetDestination:" destination="sdP-yQ-h2Z" eventType="touchUpInside" id="Be5-9R-8vY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="s4o-gq-Rg9" secondAttribute="trailing" constant="10" id="0L4-G4-OkN"/>
+                                    <constraint firstItem="HIi-1x-nNl" firstAttribute="leading" secondItem="3fp-Fq-777" secondAttribute="trailing" constant="20" id="2Pi-Ji-N5x"/>
                                     <constraint firstItem="liD-gz-GFg" firstAttribute="top" secondItem="9s4-D4-yFo" secondAttribute="top" constant="10" id="7KH-OW-PEr"/>
                                     <constraint firstItem="qpH-eP-yLr" firstAttribute="top" secondItem="liD-gz-GFg" secondAttribute="bottom" constant="5" id="8ka-7c-46J"/>
                                     <constraint firstItem="qpH-eP-yLr" firstAttribute="leading" secondItem="9s4-D4-yFo" secondAttribute="leading" constant="10" id="BlF-J8-WQz"/>
-                                    <constraint firstItem="3fp-Fq-777" firstAttribute="leading" secondItem="9s4-D4-yFo" secondAttribute="leading" constant="30" id="I1R-o9-Zj0"/>
+                                    <constraint firstItem="s4o-gq-Rg9" firstAttribute="top" secondItem="HIi-1x-nNl" secondAttribute="bottom" constant="5" id="Igd-Ba-cYZ"/>
                                     <constraint firstItem="oZ9-Eb-ihH" firstAttribute="top" secondItem="s4o-gq-Rg9" secondAttribute="bottom" constant="5" id="LGR-rc-ke4"/>
                                     <constraint firstAttribute="bottom" secondItem="oZ9-Eb-ihH" secondAttribute="bottom" constant="10" id="M1o-cd-ezS"/>
                                     <constraint firstItem="liD-gz-GFg" firstAttribute="leading" secondItem="9s4-D4-yFo" secondAttribute="leading" constant="10" id="Mpe-EW-dFl"/>
                                     <constraint firstItem="oZ9-Eb-ihH" firstAttribute="leading" secondItem="9s4-D4-yFo" secondAttribute="leading" constant="10" id="SFM-Fq-A72"/>
                                     <constraint firstAttribute="trailing" secondItem="oZ9-Eb-ihH" secondAttribute="trailing" constant="10" id="TFe-ad-x99"/>
                                     <constraint firstAttribute="trailing" secondItem="qpH-eP-yLr" secondAttribute="trailing" constant="10" id="W9j-kb-Sha"/>
+                                    <constraint firstItem="HIi-1x-nNl" firstAttribute="width" secondItem="3fp-Fq-777" secondAttribute="width" id="byR-97-r1z"/>
+                                    <constraint firstAttribute="trailing" secondItem="HIi-1x-nNl" secondAttribute="trailing" constant="15" id="duT-iF-lbt"/>
+                                    <constraint firstItem="3fp-Fq-777" firstAttribute="leading" secondItem="9s4-D4-yFo" secondAttribute="leading" constant="15" id="hBZ-6d-1F9"/>
                                     <constraint firstItem="s4o-gq-Rg9" firstAttribute="leading" secondItem="9s4-D4-yFo" secondAttribute="leading" constant="10" id="iez-uD-lo7"/>
                                     <constraint firstAttribute="trailing" secondItem="liD-gz-GFg" secondAttribute="trailing" constant="10" id="lJ6-7M-7lu"/>
                                     <constraint firstAttribute="height" constant="200" id="svk-tV-MeA"/>
                                     <constraint firstItem="s4o-gq-Rg9" firstAttribute="top" secondItem="3fp-Fq-777" secondAttribute="bottom" constant="5" id="uQV-Zf-Zwq"/>
-                                    <constraint firstAttribute="trailing" secondItem="3fp-Fq-777" secondAttribute="trailing" constant="30" id="zwR-eP-IGr"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="vZa-bu-naO">
