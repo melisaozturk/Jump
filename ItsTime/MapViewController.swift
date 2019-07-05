@@ -37,8 +37,38 @@ class MapViewController: UIViewController {
         checkLocationServices()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
-//        locationManager.startMonitoringSignificantLocationChanges() //Daha fazla bilgi al bununla ilgili
 //        locationManager.activityType = CLActivityType.other
+        checkBackgroundRefresh()
+    }
+    
+    func checkBackgroundRefresh() {
+        switch UIApplication.shared.backgroundRefreshStatus {
+        case .restricted:
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Warning !.", message: "Ask for help to enable background app refresh. ", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+        case .denied:
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Warning !.", message: "Required to enable background app refresh. ", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)")
+                        })
+                    }
+                }))
+                self.present(alert, animated: true)
+            }
+        case .available:
+            break
+        @unknown default:
+            break
+        }
     }
     
     // MARK: Notifications
