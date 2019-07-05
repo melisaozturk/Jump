@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
 //            print("About to terminate")
 //        }
+        
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
