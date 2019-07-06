@@ -19,14 +19,15 @@ class MapViewController: UIViewController {
     let regionInMeters: Double = 10000
     var locationManager = CLLocationManager()
     var previousLocation: CLLocation?
-    var trackingAddressString: String = ""
+//    var trackingAddressString: String = ""
     var trackingPlacemark: CLPlacemark?
     let destination = MKPointAnnotation()
-
+    var notificationAddress: String?
+    
     @IBOutlet weak var pinnedAddress: UILabel!
     
     var pinnedddress: CLPlacemark?
-    var trackingAddress: String?
+//    var trackingAddress: String?
     let geoCoder = CLGeocoder()
     var directionsArray = [MKDirections]()
     //    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -37,38 +38,6 @@ class MapViewController: UIViewController {
         checkLocationServices()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
-//        locationManager.activityType = CLActivityType.other
-        checkBackgroundRefresh()
-    }
-    
-    func checkBackgroundRefresh() {
-        switch UIApplication.shared.backgroundRefreshStatus {
-        case .restricted:
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Warning !.", message: "Ask for help to enable background app refresh. ", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true)
-            }
-        case .denied:
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Warning !.", message: "Required to enable background app refresh. ", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                        return
-                    }
-                    if UIApplication.shared.canOpenURL(settingsUrl) {
-                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                            print("Settings opened: \(success)")
-                        })
-                    }
-                }))
-                self.present(alert, animated: true)
-            }
-        case .available:
-            break
-        @unknown default:
-            break
-        }
     }
     
     // MARK: Notifications
@@ -77,12 +46,12 @@ class MapViewController: UIViewController {
         
         let content = UNMutableNotificationContent()
         content.title = "Jumped!."
-        content.body = "You arrived to the destination !.."
+        content.body = "You arrived to the destination !..\n\(notificationAddress!)"
         content.sound = UNNotificationSound.default
         
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+        let request = UNNotificationRequest(identifier: "jump", content: content, trigger: nil)//UUID().uuidString, content: content, trigger: nil)
         let center = UNUserNotificationCenter.current()
-        
+       
         center.add(request, withCompletionHandler: { (error) in
             if let error = error {
                 print("\n\t ERROR: \(error)")
@@ -92,16 +61,6 @@ class MapViewController: UIViewController {
         })
         print("Destination successful..")
 
-        // Define the custom actions.
-        let stopAction = UNNotificationAction(identifier: "Stop_Action",
-                                                 title: "Stop",
-                                                 options: UNNotificationActionOptions(rawValue: 0))
-        // Define the notification type
-        let notificationCategory = UNNotificationCategory(identifier: "notification_category", actions: [stopAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .customDismissAction)
-        // Register the notification type.
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.setNotificationCategories([notificationCategory])
-        
     }
     
     
@@ -141,7 +100,6 @@ class MapViewController: UIViewController {
     @IBAction func chooseDestination(_ sender: Any) {
         
         getDirections()
-        
         locationManager.showsBackgroundLocationIndicator = true
 
         if pinnedddress != nil {
@@ -167,25 +125,23 @@ class MapViewController: UIViewController {
             print("Pinned Region: ", pinnedddress?.region! as Any, pinnedddress!.thoroughfare as Any)
             
             self.pinnedAddress.text = addressString
+            notificationAddress = addressString
         }
         destination.title = "Destination"
         let center = getCenterLocation(for: mapView)
         destination.coordinate = center.coordinate
         
         self.mapView.addAnnotation(destination)
-
     }
+    
 //    reset notification açılınca olacak şeyler
     @IBAction func resetDestination(_ sender: Any) {
         mapView.removeOverlays(mapView.overlays)
         let _ = self.directionsArray.map{$0.cancel()}
-        locationManager.stopMonitoring(for: (self.pinnedddress?.region)!)
-        locationManager.showsBackgroundLocationIndicator = false // Monitoring false olduğu için indicater'a ihtiyaç yok
         self.mapView.removeAnnotation(destination)
-//        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-//        locationManager.stopUpdatingLocation()
-
-        //Stop notifications araştır
+        locationManager.showsBackgroundLocationIndicator = false
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        locationManager.stopMonitoring(for: (pinnedddress?.region)!)
     }
     
     //  MARK: Set and center current location
@@ -261,6 +217,7 @@ class MapViewController: UIViewController {
             break
         @unknown default:
             print("Error")
+            break
         }
     }
     
@@ -276,7 +233,7 @@ class MapViewController: UIViewController {
     func getDirections() {
         guard let location = locationManager.location?.coordinate else { return
             DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Sorry!", message: "I could't find your location.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Sorry!", message: "I could't find your location. Check your internet connection.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true)
             }        }
@@ -354,7 +311,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func contains(_ coordinate: CLLocationCoordinate2D) -> Bool {
         return ((self.pinnedddress?.location?.coordinate) != nil)
     }
-}  // uygulama kapatıldıktan sonra kullanıcı uygulamayı içerden sonlandırmamışsa çalışmaya devam eder stop monitoring ya da region'ı sıfırla
+}  
 
 
 extension MapViewController: MKMapViewDelegate {
@@ -413,46 +370,4 @@ extension MapViewController: MKMapViewDelegate {
     }
     
 }
-//
-extension MapViewController: UNUserNotificationCenterDelegate {
-//
-////    Bu method sadece uygulama forground'da çalışırken execute edilir
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
-        print("Test Foreground: \(notification.request.identifier)")
-
-        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-//        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        
-//        if notification.request.content.categoryIdentifier == "notification_category" {
-//            // Retrieve the meeting details.
-//            let meetingID = notification.request.content.userInfo["notification_id"] as! String
-//            let userID = notification.request.content.userInfo["USER_ID"] as! String
-//
-//            // Add the meeting to the queue.
-//            sharedMeetingManager.queueMeetingForDelivery(user: userID,
-//                                                         meetingID: meetingID)
-//
-//            // Play a sound to let the user know about the invitation.
-//            completionHandler(.sound)
-//            return
-//        }
-//        else {
-//            // Handle other notification types...
-//        }
-
-        // Don't alert the user for other types.
-        completionHandler(UNNotificationPresentationOptions(rawValue: 0))
-
-    }
-
-//    Kullanıcı notification'a cevap verirse execute edilir.(Uygulamayı açmak, action seçmek gibi)
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void){
-
-        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-//        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-    }
-
-
-}

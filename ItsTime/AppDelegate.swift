@@ -62,14 +62,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //Notification appears while app is running
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.sound, .alert])
+        
     }
     
     //Action for notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        if response.notification.request.identifier == "test"
+        if response.notification.request.identifier == "jump"
         {
-            print("Hadling notification with idetifier 'test' ")
+            print("Hadling notification with idetifier 'jump' ")
+            
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            
         }
         completionHandler()
     }
