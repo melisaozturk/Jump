@@ -19,18 +19,15 @@ class MapViewController: UIViewController {
     let regionInMeters: Double = 10000
     var locationManager = CLLocationManager()
     var previousLocation: CLLocation?
-//    var trackingAddressString: String = ""
     var trackingPlacemark: CLPlacemark?
     let destination = MKPointAnnotation()
     var notificationAddress: String?
     
     @IBOutlet weak var pinnedAddress: UILabel!
-    
+    var region: CLRegion?
     var pinnedddress: CLPlacemark?
-//    var trackingAddress: String?
     let geoCoder = CLGeocoder()
     var directionsArray = [MKDirections]()
-    //    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +35,7 @@ class MapViewController: UIViewController {
         checkLocationServices()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
+//        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     // MARK: Notifications
@@ -46,10 +44,14 @@ class MapViewController: UIViewController {
         
         let content = UNMutableNotificationContent()
         content.title = "Jumped!."
-        content.body = "You arrived to the destination !..\n\(notificationAddress!)"
+        content.body = "You arrived to the destination!"//\n\(notificationAddress!)"
         content.sound = UNNotificationSound.default
-        
-        let request = UNNotificationRequest(identifier: "jump", content: content, trigger: nil)//UUID().uuidString, content: content, trigger: nil)
+
+//        pinnedddress?.region?.notifyOnEntry = true
+//        pinnedddress?.region?.notifyOnExit = true
+//        let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
+
+        let request = UNNotificationRequest(identifier: "jump", content: content, trigger: nil)
         let center = UNUserNotificationCenter.current()
        
         center.add(request, withCompletionHandler: { (error) in
@@ -63,6 +65,25 @@ class MapViewController: UIViewController {
 
     }
     
+    func ErrorNotification() {
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Error!."
+        content.body = "An error occured. Please reset your destination."
+        content.sound = UNNotificationSound.default
+        
+        let request = UNNotificationRequest(identifier: "error", content: content, trigger: nil)
+        let center = UNUserNotificationCenter.current()
+        
+        center.add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                print("\n\t ERROR: \(error)")
+            } else {
+                print("\n\t request fulfilled \(request)")
+            }
+        })
+        print("Error")
+    }
     
     func checkNotificationPermission(){
         // Request Notification Settings
@@ -98,10 +119,12 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func chooseDestination(_ sender: Any) {
-        
+
         getDirections()
         locationManager.showsBackgroundLocationIndicator = true
-
+        checkNotificationPermission()
+        checkLocationServices()
+        
         if pinnedddress != nil {
             var addressString : String = ""
             if pinnedddress?.subLocality != nil {
@@ -127,6 +150,7 @@ class MapViewController: UIViewController {
             self.pinnedAddress.text = addressString
             notificationAddress = addressString
         }
+        
         destination.title = "Destination"
         let center = getCenterLocation(for: mapView)
         destination.coordinate = center.coordinate
@@ -144,10 +168,11 @@ class MapViewController: UIViewController {
         locationManager.stopMonitoring(for: (pinnedddress?.region)!)
     }
     
+    
     //  MARK: Set and center current location
     func setupLocation() {
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest //..ForNavigation ile farkı ne ?
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     //      Bulunduğumuz konumu haritada ortalıyoruz
     func centerViewOnUserLocation() {
@@ -232,8 +257,8 @@ class MapViewController: UIViewController {
     
     func getDirections() {
         guard let location = locationManager.location?.coordinate else { return
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Sorry!", message: "I could't find your location. Check your internet connection.", preferredStyle: .alert)
+            DispatchQueue.main.async {//Check your internet connection or location authorization
+                let alert = UIAlertController(title: "Sorry!", message: "I could't find your location.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true)
             }        }
@@ -284,7 +309,15 @@ extension MapViewController: CLLocationManagerDelegate {
 //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        guard let location = locations.last else { return }
 //                if location == locations.last {
-//                    print("New Location: ", location)
+////                    print("New Location: ", location)
+//                    if  self.region == pinnedddress?.region {
+//                        DispatchQueue.main.async {
+//                            let alert = UIAlertController(title: "Info!", message: "You are already at the destination.", preferredStyle: .alert)
+//                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                            self.present(alert, animated: true)
+//                        }
+//                    }
+//
 //        }
 //    }
     
@@ -294,24 +327,33 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("Started Monitoring")
-        locationManager.showsBackgroundLocationIndicator = true
-        checkNotificationPermission()
+            print("Started Monitoring")
+            
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Info!", message: "Monitoring started.\nPinned Address:\n\(self.notificationAddress!)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("Entering Region")
-        Notification()
+     
+            print("Entering Region")
+            Notification()
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("Exit Region")
-    }
-//    belirtilen koordinatın alanına girerse true çevirir
-    func contains(_ coordinate: CLLocationCoordinate2D) -> Bool {
-        return ((self.pinnedddress?.location?.coordinate) != nil)
-    }
-}  
+            print("Exit Region")
+            
+            DispatchQueue.main.async {//\nPinned Address:\n \(region)\n\(self.notificationAddress!)
+                let alert = UIAlertController(title: "Warning!", message: "You left the destination.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
+}
 
 
 extension MapViewController: MKMapViewDelegate {
@@ -328,10 +370,12 @@ extension MapViewController: MKMapViewDelegate {
             
             if let _ = error {
                 //TODO: Show alert informing the user
+                self.ErrorNotification()
                 return
             }
             guard let placemark = placemarks?.first else {
                 //TODO: Show alert informing the user
+                self.ErrorNotification()
                 return
             }
             

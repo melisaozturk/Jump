@@ -73,8 +73,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("Hadling notification with idetifier 'jump' ")
             
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+//            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             
+        }
+        else if response.notification.request.identifier == "error"
+        {
+            print("Hadling notification with idetifier 'error' ")
         }
         completionHandler()
     }
