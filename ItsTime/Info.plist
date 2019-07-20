@@ -7,10 +7,10 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeName</key>
+			<string>LSItemContentTypes</string>
 			<key>LSHandlerRank</key>
 			<string>Default</string>
-			<key>CFBundleTypeName</key>
-			<string>MKDirectionsRequest</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.maps.directionsrequest</string>
@@ -34,7 +34,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>11</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -47,12 +47,7 @@
 		<string>MKDirectionsModeBus</string>
 		<string>MKDirectionsModeCar</string>
 		<string>MKDirectionsModeFerry</string>
-		<string>MKDirectionsModeOther</string>
-		<string>MKDirectionsModePedestrian</string>
 		<string>MKDirectionsModePlane</string>
-		<string>MKDirectionsModeRideShare</string>
-		<string>MKDirectionsModeStreetCar</string>
-		<string>MKDirectionsModeSubway</string>
 		<string>MKDirectionsModeTaxi</string>
 		<string>MKDirectionsModeTrain</string>
 	</array>

@@ -99,7 +99,7 @@ class MapViewController: UIViewController {
             // Schedule Local Notification
             case .denied:
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Warning !.", message: "Notification permission required.", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Warning! Notification permission required.", message: "You won't be notified when you arrived to the destination unless allow the notifications.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                             return
@@ -217,25 +217,25 @@ class MapViewController: UIViewController {
     }
     
     
-    func checkLocationAuthorization() {             //--------------------------> DEĞİŞİKLİK YAP WHEN IN USE'A GÖRE
+    func checkLocationAuthorization() {             //--------------------------> DEĞİŞİKLİK YAP WHEN IN USE'A GÖRE(location trigger için)
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
-                        DispatchQueue.main.async {
-                            let alert = UIAlertController(title: "Warning! Permission required.", message: "It's recommended you to choose authorized always for app to work properly.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                                    return
-                                }
-                                if UIApplication.shared.canOpenURL(settingsUrl) {
-                                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                                        print("Settings opened: \(success)")
-                                    })
-                                }
-                            }))
-                            self.present(alert, animated: true)
-                        }
-//            startTackingUserLocation()
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Warning! Permission required.", message: "It's recommended you to choose authorized always for app to work properly.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)")
+                        })
+                    }
+                }))
+                self.present(alert, animated: true)
+            }
+            //            startTackingUserLocation()
             break
         case .notDetermined:
             locationManager.requestAlwaysAuthorization()
@@ -245,20 +245,20 @@ class MapViewController: UIViewController {
             break
         case .authorizedAlways:
             startTackingUserLocation()
-//            DispatchQueue.main.async {
-//                let alert = UIAlertController(title: "Warning! Permission required.", message: "Authorization when in use is recommended.", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-//                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-//                        return
-//                    }
-//                    if UIApplication.shared.canOpenURL(settingsUrl) {
-//                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-//                            print("Settings opened: \(success)")
-//                        })
-//                    }
-//                }))
-//                self.present(alert, animated: true)
-//            }
+            //            DispatchQueue.main.async {
+            //                let alert = UIAlertController(title: "Warning! Permission required.", message: "Authorization when in use is recommended.", preferredStyle: .alert)
+            //                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            //                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            //                        return
+            //                    }
+            //                    if UIApplication.shared.canOpenURL(settingsUrl) {
+            //                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+            //                            print("Settings opened: \(success)")
+            //                        })
+            //                    }
+            //                }))
+            //                self.present(alert, animated: true)
+            //            }
             break
         @unknown default:
             print("Error")
