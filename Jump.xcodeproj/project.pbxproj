@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1E16535822BFA8DA00EFCBC9 /* ItsTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItsTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E16535822BFA8DA00EFCBC9 /* Jump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E16535B22BFA8DA00EFCBC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E16536022BFA8DA00EFCBC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E16536222BFA8DC00EFCBC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		1E16534F22BFA8DA00EFCBC9 = {
 			isa = PBXGroup;
 			children = (
-				1E16535A22BFA8DA00EFCBC9 /* ItsTime */,
+				1E16535A22BFA8DA00EFCBC9 /* Jump */,
 				1E16536F22BFA8DC00EFCBC9 /* ItsTimeTests */,
 				1E16537A22BFA8DC00EFCBC9 /* ItsTimeUITests */,
 				1E16535922BFA8DA00EFCBC9 /* Products */,
@@ -91,14 +91,14 @@
 		1E16535922BFA8DA00EFCBC9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1E16535822BFA8DA00EFCBC9 /* ItsTime.app */,
+				1E16535822BFA8DA00EFCBC9 /* Jump.app */,
 				1E16536C22BFA8DC00EFCBC9 /* ItsTimeTests.xctest */,
 				1E16537722BFA8DC00EFCBC9 /* ItsTimeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1E16535A22BFA8DA00EFCBC9 /* ItsTime */ = {
+		1E16535A22BFA8DA00EFCBC9 /* Jump */ = {
 			isa = PBXGroup;
 			children = (
 				1E16535B22BFA8DA00EFCBC9 /* AppDelegate.swift */,
@@ -108,7 +108,7 @@
 				1E16536422BFA8DC00EFCBC9 /* LaunchScreen.storyboard */,
 				1E16536722BFA8DC00EFCBC9 /* Info.plist */,
 			);
-			path = ItsTime;
+			path = Jump;
 			sourceTree = "<group>";
 		};
 		1E16536F22BFA8DC00EFCBC9 /* ItsTimeTests */ = {
@@ -154,7 +154,7 @@
 			);
 			name = ItsTime;
 			productName = ItsTime;
-			productReference = 1E16535822BFA8DA00EFCBC9 /* ItsTime.app */;
+			productReference = 1E16535822BFA8DA00EFCBC9 /* Jump.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1E16536B22BFA8DC00EFCBC9 /* ItsTimeTests */ = {
@@ -386,10 +386,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -441,9 +443,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -457,14 +461,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R85RBRZ4TB;
-				INFOPLIST_FILE = ItsTime/Info.plist;
+				INFOPLIST_FILE = Jump/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				PRIVATE_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Headers";
 				PRODUCT_BUNDLE_IDENTIFIER = com.melisaozturk.ItsTime;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Jump;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/PrivateHeaders";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -476,14 +482,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R85RBRZ4TB;
-				INFOPLIST_FILE = ItsTime/Info.plist;
+				INFOPLIST_FILE = Jump/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				PRIVATE_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Headers";
 				PRODUCT_BUNDLE_IDENTIFIER = com.melisaozturk.ItsTime;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Jump;
+				PUBLIC_HEADERS_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/PrivateHeaders";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

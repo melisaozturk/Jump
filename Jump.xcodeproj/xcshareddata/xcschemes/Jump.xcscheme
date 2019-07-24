@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1E16535722BFA8DA00EFCBC9"
-               BuildableName = "ItsTime.app"
+               BuildableName = "Jump.app"
                BlueprintName = "ItsTime"
                ReferencedContainer = "container:Jump.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1E16535722BFA8DA00EFCBC9"
-            BuildableName = "ItsTime.app"
+            BuildableName = "Jump.app"
             BlueprintName = "ItsTime"
             ReferencedContainer = "container:Jump.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1E16535722BFA8DA00EFCBC9"
-            BuildableName = "ItsTime.app"
+            BuildableName = "Jump.app"
             BlueprintName = "ItsTime"
             ReferencedContainer = "container:Jump.xcodeproj">
          </BuildableReference>
@@ -99,7 +99,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1E16535722BFA8DA00EFCBC9"
-            BuildableName = "ItsTime.app"
+            BuildableName = "Jump.app"
             BlueprintName = "ItsTime"
             ReferencedContainer = "container:Jump.xcodeproj">
          </BuildableReference>
