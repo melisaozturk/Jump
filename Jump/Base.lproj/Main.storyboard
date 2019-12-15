@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sdP-yQ-h2Z">
-    <device id="retina3_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sdP-yQ-h2Z">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,13 +11,13 @@
         <!--Map View Controller-->
         <scene sceneID="UWW-lK-dej">
             <objects>
-                <viewController id="sdP-yQ-h2Z" customClass="MapViewController" customModule="ItsTime" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sdP-yQ-h2Z" customClass="MapViewController" customModule="Jump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ck3-9E-U1s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wKS-Hc-btb">
-                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <connections>
                                     <outlet property="delegate" destination="sdP-yQ-h2Z" id="uL3-S8-Gty"/>
                                 </connections>
@@ -135,6 +133,9 @@
                         <outlet property="locationInfo" destination="qpH-eP-yLr" id="vId-zb-1n1"/>
                         <outlet property="mapView" destination="wKS-Hc-btb" id="fg4-KB-CvD"/>
                         <outlet property="pinnedAddress" destination="oZ9-Eb-ihH" id="Ied-ci-R19"/>
+                        <outlet property="viewContainer" destination="9s4-D4-yFo" id="GxC-35-hQo"/>
+                        <outlet property="viewDestinationTitle" destination="s4o-gq-Rg9" id="OFa-2D-wb4"/>
+                        <outlet property="viewLocationInfoTitle" destination="liD-gz-GFg" id="Neg-6d-8BP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p5b-lM-SNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
