@@ -37,7 +37,6 @@ class MapViewController: UIViewController {
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         
-        darkmodeCheck()
     }
     
     // MARK: Notifications
@@ -292,7 +291,7 @@ class MapViewController: UIViewController {
         directionsArray.append(directions)
     }
     
-    func darkmodeCheck() {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if #available(iOS 12.0, *) {
             if self.traitCollection.userInterfaceStyle == .dark {
                 viewContainer.backgroundColor = UIColor.black
